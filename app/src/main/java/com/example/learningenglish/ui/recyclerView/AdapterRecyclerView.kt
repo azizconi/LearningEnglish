@@ -12,7 +12,7 @@ import com.example.learningenglish.data.Entity
 import com.example.learningenglish.utils.OnClick
 
 class AdapterRecyclerView(
-    private var onclick: OnClick
+    private var onClick: OnClick
 ) : RecyclerView.Adapter<AdapterRecyclerView.RecyclerViewHolder>() {
 
     private var entity: List<Entity> = emptyList()
@@ -35,6 +35,10 @@ class AdapterRecyclerView(
         val currentItem = entity[position]
         holder.englishTranslate.text = currentItem.englishVariant
         holder.russianTranslate.text = currentItem.russianVariant
+
+        holder.itemView.setOnClickListener {
+            onClick.onClickList(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {

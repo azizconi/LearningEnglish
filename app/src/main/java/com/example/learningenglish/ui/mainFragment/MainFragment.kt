@@ -1,12 +1,14 @@
 package com.example.learningenglish.ui.mainFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningenglish.R
@@ -60,7 +62,10 @@ class MainFragment : Fragment(), OnClick {
     }
 
     override fun onClickList(entity: Entity) {
-
+        Log.e("TAG", "onClickList: ", )
+        val bundle: Bundle = Bundle()
+        bundle.putParcelable("entity", entity)
+        findNavController().navigate(R.id.outDataFragment, bundle)
     }
 
 
