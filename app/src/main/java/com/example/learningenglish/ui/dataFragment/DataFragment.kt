@@ -19,9 +19,6 @@ import kotlinx.android.synthetic.main.fragment_data.*
 import android.R.attr.description
 
 
-
-
-
 class DataFragment : Fragment() {
     private lateinit var russianVersion: EditText
     private lateinit var englishVersion: EditText
@@ -79,14 +76,24 @@ class DataFragment : Fragment() {
 
         }
 
+
+
+
+
         addWord.setOnClickListener {
-            if(TextUtils.isEmpty(getRussianVersion()) && TextUtils.isEmpty(getEnglishVersion())){
+            if (TextUtils.isEmpty(getRussianVersion()) && TextUtils.isEmpty(getEnglishVersion())) {
                 Toast.makeText(requireContext(), "Заполните поля", Toast.LENGTH_SHORT)
                     .show()
+            } else {
+                entity = Entity(
+                    englishVariant = englishVersion.toString(),
+                    russianVariant = russianVersion.toString(),
+                    descriptionAllWord = descriptionAll.toString()
+                )
+
+                viewModel.addWord(entity)
             }
         }
-
-
 
 
     }

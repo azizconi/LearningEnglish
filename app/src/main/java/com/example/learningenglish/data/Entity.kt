@@ -10,11 +10,12 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "learning")
 @Parcelize
 data class Entity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
     @NonNull
     val englishVariant: String,
     @NonNull
     val russianVariant: String? = null,
     val descriptionAllWord: String? = null
-) : Parcelable
+) : Parcelable{
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}
