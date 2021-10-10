@@ -59,6 +59,10 @@ class MainFragment : Fragment(), OnClick {
         }
 
 
+
+
+
+
     }
 
     override fun onClickList(entity: Entity) {
