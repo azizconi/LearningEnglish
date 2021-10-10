@@ -17,16 +17,16 @@ import com.google.android.material.snackbar.Snackbar
 
 class DataFragment : Fragment() {
     private lateinit var russianVersion: EditText
-    private lateinit var descriptionRussian: EditText
+
     private lateinit var englishVersion: EditText
-    private lateinit var descriptionEnglish: EditText
+    private lateinit var descriptionAll: EditText
     private lateinit var addWord: MaterialButton
     private lateinit var viewModel: MainViewModel
 
     private lateinit var setRussianVersion: String
-    private lateinit var setDescriptionRussian: String
+
     private lateinit var setEnglishVersion: String
-    private lateinit var setDescriptionEnglish: String
+    private lateinit var setDescriptionAll: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,36 +41,21 @@ class DataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         russianVersion = view.findViewById(R.id.russianVersion)
-        descriptionRussian = view.findViewById(R.id.descriptionRussian)
+
         englishVersion = view.findViewById(R.id.englishVersion)
-        descriptionEnglish = view.findViewById(R.id.descriptionEnglish)
+        descriptionAll = view.findViewById(R.id.descriptionAll)
         addWord = view.findViewById(R.id.addWord)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        russianVersion.setText(setRussianVersion)
-        descriptionRussian.setText(setDescriptionRussian)
-        englishVersion.setText(setEnglishVersion)
-        descriptionEnglish.setText(setDescriptionEnglish)
+
 
 
         addWord.setOnClickListener {
-            if (!TextUtils.isEmpty(getRussianVersion()) && !TextUtils.isEmpty(getEnglishVersion())) {
-                Toast.makeText(requireContext(), "Поля заполнены", Toast.LENGTH_SHORT)
-                    .show()
-            }else{
-                Toast.makeText(requireContext(), "Сначала заполните поля", Toast.LENGTH_SHORT)
-                    .show()
-            }
+
         }
 
     }
 
-    private fun getRussianVersion(): String {
-        return russianVersion.text.toString().trim()
-    }
 
-    private fun getEnglishVersion(): String {
-        return englishVersion.text.toString().trim()
-    }
 }

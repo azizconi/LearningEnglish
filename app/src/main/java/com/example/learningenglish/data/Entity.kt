@@ -15,7 +15,6 @@ data class Entity(
     @NonNull
     val englishVariant: String,
     @NonNull
-    val descriptionEnglishVariant: String,
     val russianVariant: String? = null,
-    val descriptionRussianVariant: String? = null
+    val descriptionAllWord: String? = null
 ) : Parcelable

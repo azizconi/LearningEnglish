@@ -65,7 +65,7 @@ class MainFragment : Fragment(), OnClick {
         Log.e("TAG", "onClickList: ", )
         val bundle: Bundle = Bundle()
         bundle.putParcelable("entity", entity)
-        findNavController().navigate(R.id.outDataFragment, bundle)
+        findNavController().navigate(R.id.dataFragment, bundle)
     }
 
 

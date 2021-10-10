@@ -38,21 +38,23 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:paddingStart="10dp"
-        android:text="Description russian word"
+        android:text="Description word"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/russianVersion" />
+        app:layout_constraintTop_toBottomOf="@+id/englishVersion" />
 
 
     <EditText
-        android:id="@+id/descriptionRussian"
+        android:id="@+id/descriptionAll"
         android:layout_width="match_parent"
         android:layout_height="100dp"
 
         android:layout_margin="5dp"
         android:background="@drawable/bg_edittext"
+
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
@@ -63,14 +65,13 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:padding="5dp"
         android:text="English version*"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionRussian" />
+        app:layout_constraintTop_toBottomOf="@+id/russianVersion" />
 
     <EditText
         android:id="@+id/englishVersion"
@@ -83,28 +84,6 @@
 
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Description english word"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/englishVersion" />
-
-
-    <EditText
-        android:id="@+id/descriptionEnglish"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_edittext_for_english_variant"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addWord"
@@ -116,7 +95,7 @@
         android:textColor="#fff"
         app:backgroundTint="#2F5373"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionEnglish" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionAll" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
