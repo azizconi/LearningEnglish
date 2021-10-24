@@ -24,4 +24,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         daoLearning.deleteWord(entity)
     }
 
+    fun updateWord(id: Int,englishVariant: String, russianVariant: String, descriptionAllWord: String) = GlobalScope.launch{
+        daoLearning.updateWord(id, englishVariant, russianVariant, descriptionAllWord)
+    }
+
 }

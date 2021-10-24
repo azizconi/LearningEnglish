@@ -1,22 +1,27 @@
 package com.example.learningenglish.ui.dataFragment
 
-import android.R.attr
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.learningenglish.R
 import com.example.learningenglish.data.Entity
 import com.example.learningenglish.viewModel.MainViewModel
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_data.*
-import android.R.attr.description
+import androidx.navigation.NavOptions
+
+
+
 
 
 class DataFragment : Fragment() {
@@ -39,11 +44,13 @@ class DataFragment : Fragment() {
     }
 
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        russianVersion = view.findViewById(R.id.russianVersion)
+
         englishVersion = view.findViewById(R.id.englishVersion)
+        russianVersion = view.findViewById(R.id.russianVersion)
         descriptionAll = view.findViewById(R.id.descriptionAll)
 
         addWord = view.findViewById(R.id.addWord)
@@ -51,65 +58,85 @@ class DataFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        if (arguments?.getParcelable<Entity>("entity") != null) {
-            entity = requireArguments().getParcelable<Entity>("entity")!!
 
-            entity.englishVariant.let {
-                englishVersion.setText(it)
+
+
+            if (arguments?.getParcelable<Entity>("entity") != null) {
+                entity = requireArguments().getParcelable<Entity>("entity")!!
+
+                entity.englishVariant.let {
+                    englishVersion.setText(it)
+                }
+
+                entity.russianVariant.let {
+                    russianVersion.setText(it)
+                }
+
+                entity.descriptionAllWord.let {
+                    descriptionAll.setText(it)
+                }
+                addWord.text = "Update"
             }
-
-            entity.russianVariant.let {
-                russianVersion.setText(it)
-            }
-
-            entity.descriptionAllWord.let {
-                descriptionAll.setText(it)
-            }
-
-            addWord.text = "Update"
-
-            addWord.setOnClickListener {
-
-                viewModel.addWord(entity = entity)
-
-            }
-
-        }
-
 
 
 
 
         addWord.setOnClickListener {
-            if (TextUtils.isEmpty(getRussianVersion()) && TextUtils.isEmpty(getEnglishVersion())) {
+            if (
+                !TextUtils.isEmpty(getRussianVersion()) &&
+                !TextUtils.isEmpty(getEnglishVersion()) ||
+                !TextUtils.isEmpty(getDescriptionAll())
+            ) {
+                if (arguments?.getParcelable<Entity>("entity") != null) {
+                    entity = requireArguments().getParcelable<Entity>("entity")!!
+
+
+
+
+
+                    viewModel.updateWord(
+                        id = 1,
+                        englishVariant = getEnglishVersion(),
+                        russianVariant = getRussianVersion(),
+                        descriptionAllWord = getDescriptionAll()
+                    )
+
+
+
+                    addWord.findNavController()
+                        .navigate(R.id.mainFragment)
+
+
+
+                    Log.e("TAG", "onViewCreated: кор кад")
+                } else {
+                    entity = Entity(getEnglishVersion(), getRussianVersion(), getDescriptionAll())
+                    viewModel.addWord(entity = entity)
+                    addWord.findNavController().navigate(R.id.mainFragment)
+                }
+            } else {
                 Toast.makeText(requireContext(), "Заполните поля", Toast.LENGTH_SHORT)
                     .show()
-            } else {
-                entity = Entity(
-                    englishVariant = englishVersion.toString(),
-                    russianVariant = russianVersion.toString(),
-                    descriptionAllWord = descriptionAll.toString()
-                )
-
-                viewModel.addWord(entity)
             }
         }
-
-
     }
 
 
-    private fun getRussianVersion(): String {
-        return russianVersion.text.toString().trim()
-    }
 
-    private fun getEnglishVersion(): String {
-        return englishVersion.text.toString().trim()
-    }
 
-    private fun getDescriptionAll(): String {
-        return descriptionAll.text.toString().trim()
-    }
+
+
+private fun getRussianVersion(): String {
+    return russianVersion.text.toString().trim()
+}
+
+private fun getEnglishVersion(): String {
+    return englishVersion.text.toString().trim()
+}
+
+private fun getDescriptionAll(): String {
+    return descriptionAll.text.toString().trim()
+}
 
 }
 

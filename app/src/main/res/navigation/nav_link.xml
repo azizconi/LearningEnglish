@@ -18,9 +18,5 @@
         android:id="@+id/dataFragment"
         android:name="com.example.learningenglish.ui.dataFragment.DataFragment"
         android:label="fragment_data"
-        tools:layout="@layout/fragment_data" >
-        <action
-            android:id="@+id/action_dataFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_data" />
 </navigation>

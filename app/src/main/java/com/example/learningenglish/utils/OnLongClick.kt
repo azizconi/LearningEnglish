@@ -2,6 +2,6 @@ package com.example.learningenglish.utils
 
 import com.example.learningenglish.data.Entity
 
-interface OnClick {
-    fun onClickList(entity: Entity)
+interface OnLongClick {
+    fun onLongClickList(entity: Entity)
 }

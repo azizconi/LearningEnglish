@@ -19,4 +19,6 @@ interface DaoLearning {
     @Delete
     fun deleteWord(entity: Entity)
 
+    @Query("update `learning` set englishVariant = :englishVariant, russianVariant = :russianVariant, descriptionAllWord = :descriptionAllWord where `id` = :id")
+    fun updateWord(id: Int,englishVariant: String, russianVariant: String, descriptionAllWord: String)
 }

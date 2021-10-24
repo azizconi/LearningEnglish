@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Entity::class], version = 5)
+@Database(entities = [Entity::class], version = 7)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun daoLearning(): DaoLearning
